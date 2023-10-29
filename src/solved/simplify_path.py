@@ -17,7 +17,7 @@ The path only contains the directories on the path from the root directory to th
 file or directory (i.e., no period '.' or double period '..')
 Return the simplified canonical path.
 
-# Exmaples
+# Examples
 
 Example 1:
 
@@ -43,7 +43,6 @@ single one.
 path consists of English letters, digits, period '.', slash '/' or '_'.
 path is a valid absolute Unix path.
 """
-
 
 class Solution:
     def simplifyPath(self, path: str) -> str:
