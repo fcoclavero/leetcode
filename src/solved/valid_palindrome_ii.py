@@ -1,4 +1,5 @@
-"""
+"""https://leetcode.com/problems/valid-palindrome-ii/
+
 Given a string s, return true if the s can be palindrome after deleting at most one
 character from it.
 
@@ -20,7 +21,7 @@ Example 3:
 Input: s = "abc"
 Output: false
 
-Constraints:
+# Constraints
 
 1 <= s.length <= 105
 s consists of lowercase English letters.
@@ -53,7 +54,7 @@ class Solution:
 
         while i < j:
             if s[i] != s[j]:
-                return is_palindrome(s[i + 1: j]) or is_palindrome(s[i: j - 1])
+                return is_palindrome(s[i + 1: j + 1]) or is_palindrome(s[i: j])
 
             i += 1
             j -= 1
