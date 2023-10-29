@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "leetcode"
+version = "0.1.0"
+description = "Leetcode excesises."
+authors = ["Francisco Clavero <fcoclavero32@gmail.com>"]
+
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.9.1"
+isort = "^5.12.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+line-length = 88
+target-version = ["py39"]
+
+
+[tool.isort]
+line_length = 88
+force_single_line = false
+atomic = true
+include_trailing_comma = true
+lines_after_imports = 2
+lines_between_types = 1
+multi_line_output = 3
+use_parentheses = true
+skip_glob = "*/setup.py"
+filter_files = true
