@@ -46,4 +46,4 @@ class Solution:
                 have_view.append(len(heights) - (i + 1))
                 max_height = max(max_height, h)
 
-        return sorted(have_view)
+        return reversed(have_view)

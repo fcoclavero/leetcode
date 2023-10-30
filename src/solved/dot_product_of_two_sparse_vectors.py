@@ -43,7 +43,7 @@ class SparseVector:
     def __init__(self, nums: List[int]):
         # nums1 -> { 0: 1, 3: 2, 4: 3 }
         # nums2 -> { 1: 3, 3: 4 }
-        self.non_zero_values = {i: num for i, num in enumerate(nums)}
+        self.non_zero_values = {i: num for i, num in enumerate(nums) if num}
 
     # Return the dotProduct of two sparse vectors
     def dotProduct(self, vec: "SparseVector") -> int:
