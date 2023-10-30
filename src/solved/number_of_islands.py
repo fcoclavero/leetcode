@@ -1,4 +1,4 @@
-"""
+"""https://leetcode.com/problems/number-of-islands/
 
 Given an m x n 2D binary grid which represents a map of '1's (land) and '0's (water),
 return the number of islands.
@@ -42,6 +42,79 @@ class Solution:
     """
     - Left to right, top to bottom traversal.
     - At each coordinate:
+        - If visited, skip.
+        - If land, sum 1 to island count, then start BFS from there.
+        - If water, skip.
+    - O[n x m]
+
+    # Examples
+
+    Example 3:
+
+    Input: grid = [
+        ["0","0","1","0","0"],
+        ["0","1","1","0","0"],
+        ["1","1","1","0","0"],
+        ["0","0","0","1","1"]
+    ]
+
+    Example 4:
+
+    Input: grid = [
+        ["0","1","0","0","1"],
+        ["1","1","0","1","1"],
+        ["1","1","1","0","0"],
+        ["0","0","0","1","1"]
+    ]
+    """
+
+    def numIslands(self, grid: List[List[str]]) -> int:
+
+        island_count = 0
+        visited_tiles: List[List[bool]] = [[False for _ in row] for row in grid]
+
+        def bfs(row: int, col: int) -> None:
+            """Visit all land tiles of island including tile at `grid[row][col]`."""
+            queue = []
+            queue.append((row, col))
+
+            while queue:
+                y, x = queue.pop()
+
+                # Skip invalid or visited tiles
+                if (
+                    y < 0
+                    or y >= len(grid)
+                    or x < 0
+                    or x >= len(grid[0])
+                    or visited_tiles[y][x]
+                ):
+                    continue
+
+                visited_tiles[y][x] = True
+
+                if grid[y][x] == "1":  # tile is land, continue search
+                    queue.extend([(y, x - 1), (y, x + 1), (y - 1, x), (y + 1, x)])
+
+        for y, row in enumerate(grid):
+            for x, tile in enumerate(row):
+
+                if visited_tiles[y][x]:
+                    continue
+
+                if tile == "1":  # is land from new island
+                    island_count += 1
+                    bfs(y, x)
+                else:
+                    visited_tiles[y][x] = True
+
+        return island_count
+
+
+class AdHocSolution:
+    """
+    - Left to right, top to bottom traversal.
+    - At each coordinate:
         - Check top and left neighbors. If all water, create new island.
         - If only one is land, add new coordinate to island
         - If both are land, merge islands and add.
@@ -67,8 +140,8 @@ class Solution:
         ["0","0","0","1","1"]
     ]
     """
-    def numIslands(self, grid: List[List[str]]) -> int:
 
+    def numIslands(self, grid: List[List[str]]) -> int:
         class Island:
             def __init__(self):
                 self.link: "Island" = None

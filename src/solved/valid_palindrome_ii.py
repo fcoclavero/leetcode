@@ -54,7 +54,7 @@ class Solution:
 
         while i < j:
             if s[i] != s[j]:
-                return is_palindrome(s[i + 1: j + 1]) or is_palindrome(s[i: j])
+                return is_palindrome(s[i + 1 : j + 1]) or is_palindrome(s[i:j])
 
             i += 1
             j -= 1
